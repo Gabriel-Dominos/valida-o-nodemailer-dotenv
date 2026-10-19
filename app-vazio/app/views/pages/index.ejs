@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Express Validator</title>
+</head>
+<body>
+    <%
+    let  erroValidacao =  {"nome":"", "email":"", "telefone":"", "assunto":"", "mensagem":"" };
+    let  msgErro =  {"nome":"", "email":"", "telefone":"", "assunto":"", "mensagem":"" };
+    if(erros) {
+         erros.errors.forEach(function(erro) {
+             if (erro.path == "nome") {
+                erroValidacao.nome = "erro",
+                msgErro.nome = erro.msg
+             }
+             if (erro.path == "email") {
+                erroValidacao.email = "erro",
+                msgErro.email = erro.msg
+             }
+             if (erro.path == "telefone") {
+                erroValidacao.telefone = "erro",
+                msgErro.telefone = erro.msg
+             }
+             if (erro.path == "assunto") {
+                erroValidacao.assunto = "erro",
+                msgErro.assunto = erro.msg
+             }
+             if (erro.path == "mensagem") {
+                erroValidacao.mensagem = "erro",
+                msgErro.mensagem = erro.msg
+             }
+         })
+     }; %>
+ 
+    <form method="post" action="/index">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="<%= valores.nome %>"class="<%= erroValidacao.nome %>">
+        <span><%= msgErro.nome %></span> <br>
+       
+        <label for="email">E-mail</label>
+        <input type="text" name="email" id="email" value="<%= valores.email  %>" class="<%= erroValidacao.email %>">
+        <span><%= msgErro.email %></span><br>
+       
+        <label for="telefone">telefone</label>
+        <input type="text" name="telefone" id="telefone" value="<%= valores.telefone %>" class="<%= erroValidacao.telefone %>">
+        <span><%= msgErro.telefone %></span><br>
+ 
+        <label for="assunto">assunto</label>
+        <input type="text" name="assunto" id="assunto" value="<%= valores.assunto %>" class="<%= erroValidacao.assunto %>">
+        <span><%= msgErro.assunto %></span><br>
+ 
+        <label for="mensagem">mensagem</label>
+        <textarea type="text" name="mensagem" id="mensagem" value="<%= valores.mensagem %>" class="<%= erroValidacao.mensagem %>"></textarea>
+        <span><%= msgErro.mensagem %></span><br>
+ 
+        <input type="submit" value="Enviar">
+    </form>
+   
+    <% if(retorno){<!--caso retorno tenha conteúdo  --> %>
+    <h3>Temos dados de retorno</h3>
+    <span>Nome: <%= retorno.nome %> </span><br>
+    <span>e-mail:  <%= retorno.email %> </span><br>
+    <span>telefone:  <%= retorno.telefone %> </span><br>
+    <span>assunto:  <%= retorno.assunto %> </span><br>
+    <span>mensagem:  <%= retorno.mensagem %> </span><br>
+    <% }else{ <!--caso retorno = null  -->       %>
+    <h3>Não temos dados de retorno</h3>
+    <% }  %>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "express-validator": "^7.3.2",
+    "nodemailer": "^10.1.7"
+  }
+}
